@@ -1,7 +1,9 @@
 package Week3.StructuralPatterns.Ex1;
 
+import java.io.IOException;
+
 public class Client {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         String url = "https://reqres.in/api/users/2";
 
         // get request:
@@ -9,16 +11,16 @@ public class Client {
         System.out.println(getRes);
 
         // post
-        Response postRes = HttpFacade.post(url, "tal", "student");
+        Response postRes = HttpFacade.post(url, "tal@gmail.com", "student");
         System.out.println(postRes);
 
 
         // put
-        Response putRes = HttpFacade.put(url, "tal", "student");
+        Response putRes = HttpFacade.put(url, "tal", "123456");
         System.out.println(putRes);
 
         // patch
-        Response patchRes = HttpFacade.patch(url, "tal!", "student");
+        Response patchRes = HttpFacade.patch(url, "tal", "student");
         System.out.println(patchRes);
 
         // delete

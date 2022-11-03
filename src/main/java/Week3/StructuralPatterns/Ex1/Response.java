@@ -1,13 +1,18 @@
 package Week3.StructuralPatterns.Ex1;
 
 public class Response {
-    private String statusCode;
+    private int statusCode;
     private String body;
 
-    public Response(String statusCode, String body) {
+    public Response(int statusCode, String body) {
         this.statusCode = statusCode;
         this.body = body;
     }
+    public Response(int statusCode) {
+        this.statusCode = statusCode;
+        this.body = null;
+    }
+
 
     @Override
     public String toString() {
