@@ -1,6 +1,6 @@
-package Week2.ClassesInterfaces.Ex2;
+package Week2.ClassesInterfaces.ex2_v1;
 
-import Week2.ClassesInterfaces.Ex2.Animal.*;
+import Week2.ClassesInterfaces.ex2_v1.Animal.*;
 
 import java.util.ArrayList;
 import java.util.List;

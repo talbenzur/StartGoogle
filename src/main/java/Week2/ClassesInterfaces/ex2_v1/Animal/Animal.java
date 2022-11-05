@@ -1,4 +1,4 @@
-package Week2.ClassesInterfaces.Ex2.Animal;
+package Week2.ClassesInterfaces.ex2_v1.Animal;
 
 public class Animal implements IAnimal {
 

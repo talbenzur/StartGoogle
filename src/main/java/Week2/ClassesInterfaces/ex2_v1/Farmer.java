@@ -1,6 +1,6 @@
-package Week2.ClassesInterfaces.Ex2;
+package Week2.ClassesInterfaces.ex2_v1;
 
-import Week2.ClassesInterfaces.Ex2.Animal.Animal;
+import Week2.ClassesInterfaces.ex2_v1.Animal.Animal;
 
 public class Farmer {
     Farm farm;

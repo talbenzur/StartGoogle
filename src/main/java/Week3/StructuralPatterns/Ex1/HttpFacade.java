@@ -41,6 +41,7 @@ public class HttpFacade {
     }
 
 
+
     public static Response delete(String url) throws IOException {
         CloseableHttpClient httpclient = HttpClients.createDefault();
         HttpDelete httpDelete = new HttpDelete(url);
