@@ -4,7 +4,6 @@ import week3.structuralPatterns.ex2.animalTypes.AnimalType;
 import week3.structuralPatterns.ex2.animalTypes.Bird;
 import week3.structuralPatterns.ex2.animalTypes.Cat;
 import week3.structuralPatterns.ex2.animalTypes.Dog;
-import week3.structuralPatterns.ex2.ex2.animalTypes.*;
 import java.util.Random;
 import static week3.structuralPatterns.ex2.animalTypes.AnimalType.randomAnimalType;
 
