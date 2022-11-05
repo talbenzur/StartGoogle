@@ -1,4 +1,4 @@
-package week1.GeneralProgramming;
+package week1.generalProgramming;
 
 public class Player {
     private String name;

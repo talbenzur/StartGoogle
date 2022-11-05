@@ -1,4 +1,4 @@
-package week1.GeneralProgramming;
+package week1.generalProgramming;
 
 public class Main {
     public static void main(String[] args) {

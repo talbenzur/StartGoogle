@@ -1,4 +1,4 @@
-package week1.CreatingDestroyingObjects;
+package week1.creatingDestroyingObjects;
 
 public class NameGenerator {
     private static  String[] names;
