@@ -66,7 +66,6 @@ public class FacadeHttp {
         String body=null;
         CloseableHttpClient httpClient = HttpClients.createDefault();
         try(CloseableHttpResponse response = httpClient.execute(request)) {
-
             // HttpResponse Status
             statusCode = response.getStatusLine().getStatusCode();
             System.out.println(statusCode);   // 200
@@ -74,13 +73,12 @@ public class FacadeHttp {
             // HttpResponse body
             HttpEntity entity = response.getEntity();
             body = EntityUtils.toString(entity);
+
         } catch (ClientProtocolException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
         if(body==null){//if there isn't body
             return new Response(statusCode);
         }

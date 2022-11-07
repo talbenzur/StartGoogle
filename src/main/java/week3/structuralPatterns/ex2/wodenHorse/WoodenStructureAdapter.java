@@ -3,13 +3,16 @@ package week3.structuralPatterns.ex2.wodenHorse;
 import week3.structuralPatterns.ex2.AbstractAnimal;
 
 public class WoodenStructureAdapter extends AbstractAnimal {
-  WoodenHorse woodenHorse;
 
-    public WoodenStructureAdapter(WoodenHorse woodenHorse) {
-        this.woodenHorse = woodenHorse;
+  WoodenStructures woodenStructures;
+
+    public WoodenStructureAdapter( WoodenStructures woodenStructures) {
+        this.woodenStructures = woodenStructures;
     }
-    public WoodenStructureAdapter createWoodenStructureAdapter(WoodenHorse woodenHorse) {
-        return new WoodenStructureAdapter(woodenHorse);
+
+
+    public WoodenStructureAdapter createWoodenStructureAdapter(WoodenStructures woodenStructures) {
+        return new WoodenStructureAdapter(woodenStructures);
     }
 
     @Override
@@ -17,12 +20,12 @@ public class WoodenStructureAdapter extends AbstractAnimal {
         if(!(this instanceof WoodenStructureAdapter))
             throw new IllegalArgumentException("not matchable");
 
-        return createWoodenStructureAdapter(woodenHorse.replicate());
+        return createWoodenStructureAdapter(woodenStructures.replicate());
     }
 
     @Override
     public void move() {
-        woodenHorse.roll();
+        woodenStructures.roll();
     }
 
 }
