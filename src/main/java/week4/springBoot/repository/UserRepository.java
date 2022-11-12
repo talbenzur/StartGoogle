@@ -1,37 +1,44 @@
-package week4.springBoot.service;
+package week4.springBoot.repository;
 
-import App.User;
 import com.google.gson.Gson;
+import org.springframework.stereotype.Repository;
+import week4.springBoot.model.User;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class Repository {
+@Repository
+public class UserRepository {
 
-    private static Repository instance;
+    private static UserRepository instance;
 
     private static final String USERS_REPO_PATH = "src/main/java/App/Repository/users/";
 
-    public static Repository getInstance() {
+    public static UserRepository getInstance() {
         if (instance == null) {
-            instance = new Repository();
+            instance = new UserRepository();
         }
         return instance;
     }
 
     private HashMap<Long, User> users;
 
-    private Repository() {
+    private UserRepository() {
         this.users = new HashMap<>();
         initUsers();
     }
 
-    void writeUser(User user) {
+    public void writeUser(User user) {
         Gson gson = new Gson();
         String filePath = USERS_REPO_PATH + user.getId();
         try(FileWriter fileWriter = new FileWriter(filePath)) {
@@ -43,28 +50,28 @@ public class Repository {
         }
     }
 
-    Optional<List<String>> getEmails() {
+    public Optional<List<String>> getEmails() {
         return Optional.of(users.values().stream()
                 .map(User::getEmail)
                 .collect(Collectors.toList()));
     }
 
-    Optional<User> getUserById(long id) {
+    public Optional<User> getUserById(long id) {
         return Optional.of(users.get(id));
     }
 
-    Optional<User> getUserByEmail(String email) {
+    public Optional<User> getUserByEmail(String email) {
         return users.values().stream()
                 .filter(user -> user.getEmail().equals(email))
                 .findFirst();
     }
 
-    void updateUser(User user) {
+    public void updateUser(User user) {
         users.put(user.getId(), user);
         writeUser(user);
     }
 
-    boolean deleteUser(User user) {
+    public boolean deleteUser(User user) {
         users.remove(user.getId());
         Path path = Paths.get(USERS_REPO_PATH + user.getId());
         try {

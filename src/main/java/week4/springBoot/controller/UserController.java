@@ -1,36 +1,45 @@
 package week4.springBoot.controller;
-import App.service.UserService;
 
-import static App.controller.UtilController.*;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import week4.springBoot.service.UserService;
+
+import static week4.springBoot.controller.UtilController.*;
+
+@RestController
+@RequestMapping("/user")
 public class UserController {
+
+    @Autowired
     private static UserService userService= new UserService();
 
-    public static void updateUserEmail(Long token, String email){
+    @RequestMapping(method = RequestMethod.PUT, value = "/updateEmail")
+    public static void updateUserEmail(@RequestHeader("token") Long token,@RequestParam String email){
         if (!checkEmailValid(email)){
             System.out.println("Invalid Email for update");
         } else {
             userService.updateEmail(token, email);
         }
     }
-
-    public static void updateUserName(Long token,String name){
+    @RequestMapping(method = RequestMethod.PUT, value = "/updateName")
+    public static void updateUserName(@RequestHeader("token") Long token,@RequestParam String name){
         if (!checkNameValid(name)){
             System.out.println("Invalid Name for update");
         } else {
             userService.updateName(token, name);
         }
     }
-
-    public static void updateUserPassword(Long token,String password){
+    @RequestMapping(method = RequestMethod.PUT, value = "/updatePassword")
+    public static void updateUserPassword(@RequestHeader("token")Long token, @RequestParam String password){
         if(!checkPasswordValid(password)){
             System.out.println("Invalid Password for update");
         } else {
             userService.userUpdatePassword(token, password);
         }
     }
-
-    public static void deleteUser(Long token){
+    @RequestMapping(method = RequestMethod.DELETE,value="/delete")
+    public static void deleteUser(@RequestHeader("token") Long token){
         userService.deleteUser(token);
     }
 }

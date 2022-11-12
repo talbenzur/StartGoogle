@@ -30,6 +30,8 @@ public class UtilController {
 
 
     static boolean checkRegex(String regex, String name){
+
+
         Pattern p = Pattern.compile(regex);
         Matcher m = p.matcher(name);
         return m.matches();

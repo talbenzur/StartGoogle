@@ -1,4 +1,5 @@
-package week4.springBoot;
+package week4.springBoot.model;
+
 
 public class User {
     private final long id;

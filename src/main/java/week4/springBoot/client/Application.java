@@ -1,11 +1,19 @@
 package week4.springBoot.client;
 
-import week4.springBoot.controller.AuthController;
-import week4.springBoot.controller.UserController;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-public class Main {
+
+
+@SpringBootApplication
+public class Application {
     public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
 
+    }
+}
+
+/*
         //register new user
         AuthController.registerNewUser("avi@gmail.com","Avi","Avi123456");
         AuthController.registerNewUser("yossi@gmail.com","Yossi","Yos123456");
@@ -25,5 +33,4 @@ public class Main {
 
         //delete user:
         UserController.deleteUser(token);
-    }
-}
+*/

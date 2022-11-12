@@ -1,15 +1,21 @@
 package week4.springBoot.controller;
 
-import App.service.AuthenticationService;
 
-import static App.controller.UtilController.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import week4.springBoot.service.AuthenticationService;
 
+import static week4.springBoot.controller.UtilController.*;
+
+@RestController
+@RequestMapping("/auth")
 public class AuthController {
 
-
+    @Autowired
     private static AuthenticationService authService= new AuthenticationService();
 
-    public static Long registerNewUser(String email, String name, String password){
+    @RequestMapping(method = RequestMethod.POST, path= "/register")
+    public static Long registerNewUser(@RequestParam String email,@RequestParam String name, @RequestParam String password){
         if(!checkEmailValid(email)){
             System.out.println("Invalid Email");
             return null;
@@ -27,7 +33,8 @@ public class AuthController {
         return authService.createUser(email, name, password);
     }
 
-    public static Long login(String email, String password){
+    @RequestMapping(method = RequestMethod.GET, path= "/login")
+    public static Long login(@RequestParam String email,@RequestParam String password){
         if(!checkEmailValid(email)){
             System.out.println("email field invalid");
             return null;

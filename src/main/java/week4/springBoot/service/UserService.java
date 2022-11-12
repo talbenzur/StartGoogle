@@ -1,18 +1,23 @@
 package week4.springBoot.service;
 
-import App.User;
-import App.utilities.UniqueNumber;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import week4.springBoot.repository.UserRepository;
+import week4.springBoot.model.User;
+import week4.springBoot.utilities.UniqueNumber;
 
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
-import static App.service.TokenService.getIDFromToken;
+import static week4.springBoot.service.TokenService.getIDFromToken;
 
+@Service
 public class UserService {
-
-    private Repository repository = Repository.getInstance();
+    @Autowired
+    private UserRepository userRepository = UserRepository.getInstance();
     private HashMap<Long, Long> userIdTokenMap = new HashMap<>();
     private Set<Long> tokenSet = new HashSet<>();
     private UniqueNumber tokenUniqueNumber = new UniqueNumber();
@@ -22,11 +27,11 @@ public class UserService {
     public void updateName(long token, String newName) {
         Long id = getIDFromToken(token);
         if (id != null) {
-            Optional<User> user = repository.getUserById(id);
+            Optional<User> user = userRepository.getUserById(id);
             if (user.isPresent()) {
                 User updatedUser = new User(user.get().getId(),
                         user.get().getEmail(), newName, user.get().getPassword());
-                repository.updateUser(updatedUser);
+                userRepository.updateUser(updatedUser);
                 System.out.println("User Name updated successfully");
             } else {
                 System.out.println("Can't update name");
@@ -39,11 +44,11 @@ public class UserService {
     public void updateEmail( long token, String newEmail) {
         Long id = getIDFromToken(token);
         if (id != null) {
-            Optional<User> user = repository.getUserById(id);
-            if (user.isPresent() && !repository.getUserByEmail(newEmail).isPresent()) {
+            Optional<User> user = userRepository.getUserById(id);
+            if (user.isPresent() && !userRepository.getUserByEmail(newEmail).isPresent()) {
                 User updatedUser = new User(user.get().getId(),
                         newEmail, user.get().getName(), user.get().getPassword());
-                repository.updateUser(updatedUser);
+                userRepository.updateUser(updatedUser);
                 System.out.println("User Email updated successfully");
             } else {
                 System.out.println("Can't update email");
@@ -56,11 +61,11 @@ public class UserService {
     public void userUpdatePassword( long token, String newPassword) {
         Long id = getIDFromToken(token);
         if (id != null) {
-            Optional<User> user = repository.getUserById(id);
+            Optional<User> user = userRepository.getUserById(id);
             if (user.isPresent()) {
                 User updatedUser = new User(user.get().getId(),
                         user.get().getEmail(), user.get().getName(), newPassword);
-                repository.updateUser(updatedUser);
+                userRepository.updateUser(updatedUser);
                 System.out.println("User Password updated successfully");
             } else {
                 System.out.println("Can't update password");
@@ -73,9 +78,9 @@ public class UserService {
     public void deleteUser( long token) {
         Long id = getIDFromToken(token);
         if (id != null) {
-            Optional<User> user = repository.getUserById(id);
+            Optional<User> user = userRepository.getUserById(id);
             if (user.isPresent()) {
-                if (repository.deleteUser(user.get())){
+                if (userRepository.deleteUser(user.get())){
                     System.out.println("User Account deleted successfully");
                 }
             } else {
